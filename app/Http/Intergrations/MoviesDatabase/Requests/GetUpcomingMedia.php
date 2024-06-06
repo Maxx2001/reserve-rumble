@@ -5,7 +5,7 @@ namespace App\Http\Intergrations\MoviesDatabase\Requests;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
-class GetUpcoming extends Request
+class GetUpcomingMedia extends Request
 {
     protected Method $method = Method::GET;
 
