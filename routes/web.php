@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomePageController;
 
@@ -10,6 +11,8 @@ Route::get('/', HomePageController::class)->name('home');
 
 Route::get('/series', [MediaController::class, 'series'])->name('series');
 Route::get('/movies', [MediaController::class, 'movies'])->name('movies');
+Route::resource('genres', GenreController::class)->only('index', 'show');
+Route::get('/top-boxoffice', [MediaController::class, 'topBoxoffice'])->name('topBoxoffice');
 Route::get('/media/{id}', [MediaController::class, 'show'])->name('media.show');
 
 Route::get('/dashboard', function () {
