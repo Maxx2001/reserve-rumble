@@ -10,6 +10,7 @@ use Saloon\Exceptions\Request\FatalRequestException;
 use App\Http\Intergrations\MoviesDatabase\Requests\GetMedia;
 use App\Http\Intergrations\MoviesDatabase\Requests\GetSeries;
 use App\Http\Intergrations\MoviesDatabase\MoviesDatabaseConnector;
+use App\Http\Intergrations\MoviesDatabase\Requests\GetTopBoxoffice;
 
 class MediaController extends Controller
 {
@@ -49,13 +50,34 @@ class MediaController extends Controller
 
         $series = $this->moviesDatabaseConnector->send($getSeries)->object();
 
-        return Inertia::render('MediaCollectionPage',
+        return Inertia::render('Media/MediaCollectionPage',
             [
                 'pageTitle'       => 'Series',
                 'mediaCollection' => $series,
             ]
         );
     }
+
+       /**
+     * @throws FatalRequestException
+     * @throws RequestException
+     * @throws JsonException
+     */
+    public function topBoxoffice(): Response
+    {
+        $getTopBoxoffice = new GetTopBoxoffice();
+
+        $topBoxoffice = $this->moviesDatabaseConnector->send($getTopBoxoffice)->object();
+
+        return Inertia::render('Media/MediaCollectionPage',
+            [
+                'pageTitle'       => 'Top Boxoffice',
+                'mediaCollection' => $topBoxoffice,
+            ]
+        );
+    }
+
+
 
     //    The API I was using for this project didn't return any movies.
     //    /**

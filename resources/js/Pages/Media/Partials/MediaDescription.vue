@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import ReleaseDateInformation from "@/Components/Genre/ReleaseDateInformation.vue";
+import ReleaseDateInformation from "@/Pages/Genres/Partials/ReleaseDateInformation.vue";
 
 defineProps({
     media: {

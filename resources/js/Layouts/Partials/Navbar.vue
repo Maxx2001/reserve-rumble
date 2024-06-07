@@ -8,19 +8,14 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <Link
-                            :href="route('home')"
-                            class="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                            v-for="menuItem in menuItems"
+                            :key="menuItem.name"
+                            :href="menuItem.route"
+                            :class="menuItem.active ? 'border-b-2 border-indigo-500' : 'text-gray-900'"
+                            class="inline-flex items-center  px-1 pt-1 text-sm font-medium"
                         >
-                            Home
+                            {{ menuItem.name }}
                         </Link>
-                        <Link
-                            :href="route('series')"
-                            class="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
-                        >
-                            Series
-                        </Link>
-                        <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-<!--                        <a href="#" class="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900">Home</a>-->
                     </div>
                 </div>
                 <!--                <div class="hidden sm:ml-6 sm:flex sm:items-center">-->
@@ -103,4 +98,28 @@
 import { Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { Link } from "@inertiajs/vue3";
+
+const menuItems = [
+    {
+        name: "Home",
+        route: route('home'),
+        active: route().current('home')
+    },
+    {
+        name: "Series",
+        route: route('series'),
+        active: route().current('series')
+    },
+    {
+        name: "Top boxoffice",
+        route: route('topBoxoffice'),
+        active: route().current('topBoxoffice')
+    },
+    {
+        name: "Genres",
+        route: route('genres.index'),
+        active: route().current('genres.*')
+    },
+];
+
 </script>

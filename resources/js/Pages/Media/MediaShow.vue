@@ -6,7 +6,7 @@
 
 <script setup>
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import MediaPreview from "@/Components/Media/MediaPreview.vue";
+import MediaPreview from "@/Pages/Media/Partials/MediaPreview.vue";
 
 defineProps({
     media: {

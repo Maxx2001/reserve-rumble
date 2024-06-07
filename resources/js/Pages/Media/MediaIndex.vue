@@ -11,7 +11,7 @@
 
 <script setup>
 import DefaultLayout from "@/Layouts/DefaultLayout.vue";
-import MediaCollection from "@/Components/Media/MediaCollection.vue";
+import MediaCollection from "@/Pages/Media/Partials/MediaCollection.vue";
 
 defineProps({
     pageTitle: {

@@ -30,8 +30,8 @@
 <script setup>
 import ReviewStars from "@/Components/Reviews/ReviewStars.vue";
 import AddToWatchListButton from "@/Components/Buttons/AddToWatchListButton.vue";
-import MediaDescription from "@/Components/Media/MediaDescription.vue";
-import GenreBadgeList from "@/Components/Genre/GenreBadgeList.vue";
+import MediaDescription from "@/Pages/Media/Partials/MediaDescription.vue";
+import GenreBadgeList from "@/Pages/Genres/Partials/GenreBadgeList.vue";
 
 defineProps({
     media: {

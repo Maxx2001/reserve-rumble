@@ -16,7 +16,7 @@
     </ul>
 </template>
 <script setup>
-import MediaContentCard from "@/Components/Media/MediaContentCard.vue";
+import MediaContentCard from "@/Pages/Media/Partials/MediaContentCard.vue";
 
 defineProps({
     mediaCollection: {
