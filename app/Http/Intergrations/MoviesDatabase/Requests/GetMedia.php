@@ -5,19 +5,23 @@ namespace App\Http\Intergrations\MoviesDatabase\Requests;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
-class GetUpcomingMedia extends Request
+class GetMedia extends Request
 {
     protected Method $method = Method::GET;
 
+    public function __construct(protected readonly string $id)
+    {
+    }
+
     public function resolveEndpoint(): string
     {
-        return '/titles/x/upcoming';
+        return '/titles/' . $this->id;
     }
 
     protected function defaultQuery(): array
     {
         return [
-            'limit' => '25',
+            'info' => 'base_info',
         ];
     }
 }

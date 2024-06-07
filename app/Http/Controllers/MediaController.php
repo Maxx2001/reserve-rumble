@@ -7,25 +7,26 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Exceptions\Request\FatalRequestException;
+use App\Http\Intergrations\MoviesDatabase\Requests\GetMedia;
 use App\Http\Intergrations\MoviesDatabase\MoviesDatabaseConnector;
-use App\Http\Intergrations\MoviesDatabase\Requests\GetUpcomingMedia;
 
-class HomePageController extends Controller
+class MediaController extends Controller
 {
     /**
      * @throws FatalRequestException
-     * @throws RequestException|JsonException
+     * @throws RequestException
+     * @throws JsonException
      */
-    public function __invoke(): Response
+    public function show(string $mediaId): Response
     {
         $moviesDatabaseConnector = new MoviesDatabaseConnector();
-        $getUpcomingMedia        = new GetUpcomingMedia();
+        $getMedia                = new GetMedia($mediaId);
 
-        $upcomingMedia = $moviesDatabaseConnector->send($getUpcomingMedia)->object();
+        $media = $moviesDatabaseConnector->send($getMedia)->object();
 
-        return Inertia::render('Welcome',
+        return Inertia::render('Media/MediaShow',
             [
-                'upcomingMedia' => $upcomingMedia,
+                'media' => $media,
             ]
         );
     }

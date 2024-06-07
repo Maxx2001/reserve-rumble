@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\HomePageController;
 
-Route::get('/', HomePageController::class);
+Route::get('/', HomePageController::class)->name('home');
+Route::get('/media/{id}', [MediaController::class, 'show'])->name('media.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
