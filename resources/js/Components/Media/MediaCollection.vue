@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-8 pb-2">
+    <div v-if="title" class="pt-8 pb-2">
         <h2 class="text-2xl ">
             {{ title }}
         </h2>
@@ -25,7 +25,7 @@ defineProps({
     },
     title: {
         type: String,
-        required: true,
+        required: false,
     },
 });
 </script>

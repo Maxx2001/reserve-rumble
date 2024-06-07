@@ -13,7 +13,7 @@
                     <h1 class="text-3xl font-bold tracking-tight text-gray-900">
                         {{ media.results.titleText.text}}
                     </h1>
-                    <ReviewStars :rating="media.results.ratingsSummary"/>
+                    <ReviewStars :ratingsSummary="media.results.ratingsSummary"/>
                     <MediaDescription :media="media.results" />
                     <div class="mt-2">
                         <AddToWatchListButton :disabled="true"/>
