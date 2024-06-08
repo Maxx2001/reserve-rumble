@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use JsonException;
 use Inertia\Inertia;
+use App\Models\User;
 use Inertia\Response;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\MediaResource;
+use App\Http\Resources\StatusResource;
 use Saloon\Exceptions\Request\RequestException;
+use App\Http\Resources\MediaCollectionResource;
 use Saloon\Exceptions\Request\FatalRequestException;
 use App\Http\Intergrations\MoviesDatabase\Requests\GetMedia;
 use App\Http\Intergrations\MoviesDatabase\Requests\GetSeries;
@@ -28,17 +33,25 @@ class MediaController extends Controller
      */
     public function show(string $mediaId): Response
     {
-        $getMedia = new GetMedia($mediaId);
+        $getMedia    = new GetMedia($mediaId);
+        $media       = $this->moviesDatabaseConnector->send($getMedia)->object();
+        $mediaStatus = null;
 
-        $media = $this->moviesDatabaseConnector->send($getMedia)->object();
+        /**
+         * @var User $user
+         * */
+        if ($user = Auth::user()) {
+            $mediaStatus = $user->getMediaStatus($media->results->id);
+            $mediaStatus = $mediaStatus ? StatusResource::make($mediaStatus) : null;
+        }
 
         return Inertia::render('Media/MediaShow',
             [
-                'media' => MediaResource::make($media->results),
+                'media'       => MediaResource::make($media->results),
+                'mediaStatus' => $mediaStatus,
             ]
         );
     }
-
 
     /**
      * @throws FatalRequestException

@@ -68,6 +68,11 @@ const menuItems = [
         route: route('genres.index'),
         active: route().current('genres.*')
     },
+    {
+        name: "Watchlist",
+        route: route('user-media.index'),
+        active: route().current('user-media.*')
+    },
 ];
 
 </script>

@@ -16,7 +16,10 @@
                     <ReviewStars :ratingsSummary="media.ratingsSummary"/>
                     <MediaDescription :media="media" />
                     <div class="mt-2">
-                        <AddToWatchListButton :disabled="true" :media="media"/>
+                        <AddToWatchListButton
+                            :media="media"
+                            :mediaStatus="mediaStatus"
+                        />
                     </div>
                     <div class="mt-6">
                         <GenreBadgeList :genre-list="media.genres"/>
@@ -36,6 +39,10 @@ import GenreBadgeList from "@/Pages/Genres/Partials/GenreBadgeList.vue";
 defineProps({
     media: {
         type: Object,
+        required: true
+    },
+    mediaStatus: {
+        type: String,
         required: true
     }
 })

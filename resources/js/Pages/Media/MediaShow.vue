@@ -1,6 +1,9 @@
 <template>
     <DefaultLayout>
-        <MediaPreview :media="media.data"/>
+        <MediaPreview
+            :media="media.data"
+            :mediaStatus="mediaStatus"
+        />
     </DefaultLayout>
 </template>
 
@@ -11,6 +14,10 @@ import MediaPreview from "@/Pages/Media/Partials/MediaPreview.vue";
 defineProps({
     media: {
         type: Object,
+        required: true
+    },
+    mediaStatus: {
+        type: String,
         required: true
     }
 })

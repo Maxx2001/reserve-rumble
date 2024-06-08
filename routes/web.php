@@ -6,14 +6,18 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\UserMediaController;
 
 Route::get('/', HomePageController::class)->name('home');
 
 Route::get('/series', [MediaController::class, 'series'])->name('series');
 Route::get('/movies', [MediaController::class, 'movies'])->name('movies');
+Route::resource('media', MediaController::class)->only('show');
+
 Route::resource('genres', GenreController::class)->only('index', 'show');
 Route::get('/top-boxoffice', [MediaController::class, 'topBoxoffice'])->name('topBoxoffice');
-Route::get('/media/{id}', [MediaController::class, 'show'])->name('media.show');
+
+Route::resource('user-media', UserMediaController::class)->only('index', 'store', 'destroy');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
