@@ -3,9 +3,12 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
                 <div class="flex">
-                    <div class="flex flex-shrink-0 items-center">
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-                    </div>
+                    <Link
+                        :href="route('home')"
+                        class="mt-5"
+                    >
+                        Screen Snack
+                    </Link>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <Link
                             v-for="menuItem in menuItems"
@@ -44,34 +47,40 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import AuthControl from "@/Layouts/Partials/AuthControl.vue";
-
+import ApplicationLogo from "@/Components/Breeze/ApplicationLogo.vue";
+const user = usePage().props.auth.user;
 const menuItems = [
     {
         name: "Home",
         route: route('home'),
-        active: route().current('home')
+        active: route().current('home'),
+        show: true
     },
     {
         name: "Series",
         route: route('series'),
-        active: route().current('series')
+        active: route().current('series'),
+        show: true
     },
     {
         name: "Top boxoffice",
         route: route('topBoxoffice'),
-        active: route().current('topBoxoffice')
+        active: route().current('topBoxoffice'),
+        show: true
     },
     {
         name: "Genres",
         route: route('genres.index'),
-        active: route().current('genres.*')
+        active: route().current('genres.*'),
+        show: true
     },
     {
         name: "Watchlist",
         route: route('user-media.index'),
-        active: route().current('user-media.*')
+        active: route().current('user-media.*'),
+        show: usePage().props.auth.user !== null
     },
 ];
 

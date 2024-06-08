@@ -17,16 +17,15 @@ Route::resource('media', MediaController::class)->only('show');
 Route::resource('genres', GenreController::class)->only('index', 'show');
 Route::get('/top-boxoffice', [MediaController::class, 'topBoxoffice'])->name('topBoxoffice');
 
-Route::resource('user-media', UserMediaController::class)->only('index', 'store', 'destroy');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('user-media', UserMediaController::class)->only('index', 'store', 'destroy');
 });
 
 require __DIR__ . '/auth.php';
