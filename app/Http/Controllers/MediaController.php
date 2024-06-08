@@ -39,6 +39,7 @@ class MediaController extends Controller
         );
     }
 
+
     /**
      * @throws FatalRequestException
      * @throws RequestException
@@ -50,7 +51,7 @@ class MediaController extends Controller
 
         $series = $this->moviesDatabaseConnector->send($getSeries)->object();
 
-        return Inertia::render('Media/MediaCollectionPage',
+        return Inertia::render('Media/MediaIndex',
             [
                 'pageTitle'       => 'Series',
                 'mediaCollection' => $series,
@@ -69,7 +70,7 @@ class MediaController extends Controller
 
         $topBoxoffice = $this->moviesDatabaseConnector->send($getTopBoxoffice)->object();
 
-        return Inertia::render('Media/MediaCollectionPage',
+        return Inertia::render('Media/MediaIndex',
             [
                 'pageTitle'       => 'Top Boxoffice',
                 'mediaCollection' => $topBoxoffice,
