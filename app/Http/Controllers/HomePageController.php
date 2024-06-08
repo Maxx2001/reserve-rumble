@@ -6,6 +6,7 @@ use JsonException;
 use Inertia\Inertia;
 use Inertia\Response;
 use Saloon\Exceptions\Request\RequestException;
+use App\Http\Resources\MediaCollectionResource;
 use Saloon\Exceptions\Request\FatalRequestException;
 use App\Http\Intergrations\MoviesDatabase\MoviesDatabaseConnector;
 use App\Http\Intergrations\MoviesDatabase\Requests\GetUpcomingMedia;
@@ -25,7 +26,7 @@ class HomePageController extends Controller
 
         return Inertia::render('Welcome',
             [
-                'upcomingMedia' => $upcomingMedia,
+                'upcomingMedia' => MediaCollectionResource::collection($upcomingMedia->results),
             ]
         );
     }

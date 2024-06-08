@@ -34,7 +34,7 @@ class MediaController extends Controller
 
         return Inertia::render('Media/MediaShow',
             [
-                'media' => $media,
+                'media' => MediaResource::make($media->results),
             ]
         );
     }
@@ -51,15 +51,16 @@ class MediaController extends Controller
 
         $series = $this->moviesDatabaseConnector->send($getSeries)->object();
 
+
         return Inertia::render('Media/MediaIndex',
             [
                 'pageTitle'       => 'Series',
-                'mediaCollection' => $series,
+                'mediaCollection' => MediaCollectionResource::collection($series->results),
             ]
         );
     }
 
-       /**
+    /**
      * @throws FatalRequestException
      * @throws RequestException
      * @throws JsonException
@@ -73,7 +74,7 @@ class MediaController extends Controller
         return Inertia::render('Media/MediaIndex',
             [
                 'pageTitle'       => 'Top Boxoffice',
-                'mediaCollection' => $topBoxoffice,
+                'mediaCollection' => MediaCollectionResource::collection($topBoxoffice->results),
             ]
         );
     }

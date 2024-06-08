@@ -5,7 +5,7 @@
                 {{ pageTitle }}
             </h1>
         </div>
-        <MediaCollection :mediaCollection="mediaCollection"/>
+        <MediaCollection :mediaCollection="mediaCollection.data"/>
     </DefaultLayout>
 </template>
 

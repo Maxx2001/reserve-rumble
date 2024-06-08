@@ -8,7 +8,7 @@
                 Nibble on Hits. Crunch on Classics.
             </h2>
         </div>
-        <MediaCollection :mediaCollection="upcomingMedia" title="Upcoming Media"/>
+        <MediaCollection :mediaCollection="upcomingMedia.data" title="Upcoming Media"/>
     </DefaultLayout>
 </template>
 

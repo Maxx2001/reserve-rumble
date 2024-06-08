@@ -1,6 +1,6 @@
 <template>
     <DefaultLayout>
-        <MediaPreview :media="media"/>
+        <MediaPreview :media="media.data"/>
     </DefaultLayout>
 </template>
 

@@ -3,23 +3,23 @@
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                 <div class="flex flex-col-reverse">
-                    <div class="aspect-h-1 aspect-w-1 w-full" v-if="media.results.primaryImage">
+                    <div class="aspect-h-1 aspect-w-1 w-full" v-if="media.primaryImageUrl">
                         <img
-                            :src="media.results.primaryImage.url" :alt="media.results.titleText.text"
+                            v-lazy="media.primaryImageUrl"
                             class="h-full w-full object-cover object-center sm:rounded-lg" />
                     </div>
                 </div>
                 <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
                     <h1 class="text-3xl font-bold tracking-tight text-gray-900">
-                        {{ media.results.titleText.text}}
+                        {{ media.title}}
                     </h1>
-                    <ReviewStars :ratingsSummary="media.results.ratingsSummary"/>
-                    <MediaDescription :media="media.results" />
+                    <ReviewStars :ratingsSummary="media.ratingsSummary"/>
+                    <MediaDescription :media="media" />
                     <div class="mt-2">
-                        <AddToWatchListButton :disabled="true"/>
+                        <AddToWatchListButton :disabled="true" :media="media"/>
                     </div>
                     <div class="mt-6">
-                        <GenreBadgeList :genre-list="media.results.genres.genres"/>
+                        <GenreBadgeList :genre-list="media.genres"/>
                     </div>
                 </div>
             </div>

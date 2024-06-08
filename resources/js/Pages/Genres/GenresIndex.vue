@@ -8,7 +8,7 @@
         <div class="pt-2">
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <li
-                    v-for="genre in genres.results"
+                    v-for="genre in genres"
                     :key="genre"
                     class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow-md hover:shadow-lg hover:bg-gray-50"
                 >

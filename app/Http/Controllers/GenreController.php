@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use JsonException;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Http\Resources\GenreResource;
 use Saloon\Exceptions\Request\RequestException;
+use App\Http\Resources\MediaCollectionResource;
 use Saloon\Exceptions\Request\FatalRequestException;
 use App\Http\Intergrations\MoviesDatabase\Requests\GetGenres;
 use App\Http\Intergrations\MoviesDatabase\MoviesDatabaseConnector;
-use App\Http\Intergrations\MoviesDatabase\Requests\GetTopBoxofficeBasedOnGenre;
+use App\Http\Intergrations\MoviesDatabase\Requests\GetTopBoxOfficeBasedOnGenre;
 
 class GenreController extends Controller
 {
@@ -36,7 +38,7 @@ class GenreController extends Controller
 
         return Inertia::render('Genres/GenresIndex',
             [
-                'genres' => $genres,
+                'genres' => $genres->results,
             ]
         );
     }
@@ -48,14 +50,14 @@ class GenreController extends Controller
      */
     public function show(string $genre): Response
     {
-        $topBoxofficeBasedOnGenre = new GetTopBoxofficeBasedOnGenre($genre);
+        $topBoxOfficeBasedOnGenre = new GetTopBoxOfficeBasedOnGenre($genre);
 
-        $media = $this->moviesDatabaseConnector->send($topBoxofficeBasedOnGenre)->object();
+        $media = $this->moviesDatabaseConnector->send($topBoxOfficeBasedOnGenre)->object();
 
         return Inertia::render('Media/MediaIndex',
             [
                 'pageTitle'       => $genre,
-                'mediaCollection' => $media,
+                'mediaCollection' => MediaCollectionResource::collection($media->results),
             ]
         );
     }

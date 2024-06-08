@@ -8,7 +8,7 @@
                 v-if="media.plot"
                 class="space-y-6 text-base text-gray-700 py-3"
             >
-                {{  media.plot.plotText.plainText }}
+                {{  media.plot }}
             </div>
             <div v-else>
                 <i class="text-sm">
@@ -17,14 +17,14 @@
             </div>
         </div>
 
-        <div class="space-y-6 text-base text-gray-700 py-3" v-if="media.primaryImage">
-            {{  media.primaryImage.caption.plainText }}
+        <div class="space-y-6 text-base text-gray-700 py-3" v-if="media.captionText">
+            {{  media.captionText }}
         </div>
         <div v-if="media.episodes">
-            {{  media.episodes.episodes.total }} episodes over {{ media.episodes.seasons.length }} seasons.
+            {{  media.episodes.episodeCount }} episodes over {{ media.episodes.seasonCount }} seasons.
         </div>
     </div>
-    <ReleaseDateInformation :release-year="media.releaseYear.year"/>
+    <ReleaseDateInformation :release-year="media.releaseYear"/>
 </template>
 
 <script setup>

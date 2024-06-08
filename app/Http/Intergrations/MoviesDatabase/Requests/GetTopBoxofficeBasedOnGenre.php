@@ -5,7 +5,7 @@ namespace App\Http\Intergrations\MoviesDatabase\Requests;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
-class GetTopBoxofficeBasedOnGenre extends Request
+class GetTopBoxOfficeBasedOnGenre extends Request
 {
     protected Method $method = Method::GET;
 

@@ -17,7 +17,7 @@ class GetUpcomingMedia extends Request
     protected function defaultQuery(): array
     {
         return [
-            'limit' => '25',
+            'limit' => '24',
         ];
     }
 }

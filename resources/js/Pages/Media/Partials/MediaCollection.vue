@@ -7,7 +7,7 @@
     <hr class="border-b w-full pb-4">
     <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <li
-            v-for="media in mediaCollection.results"
+            v-for="media in mediaCollection"
             :key="media.id"
             class="col-span-1 "
         >

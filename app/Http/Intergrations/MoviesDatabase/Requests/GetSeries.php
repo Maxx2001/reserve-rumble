@@ -18,7 +18,6 @@ class GetSeries extends Request
     {
         return [
             'list'  => 'most_pop_series',
-            'sort'  => 'year.decr',
             'limit' => '24',
         ];
     }
