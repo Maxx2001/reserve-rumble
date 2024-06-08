@@ -52,7 +52,7 @@ class GenreController extends Controller
 
         $media = $this->moviesDatabaseConnector->send($topBoxofficeBasedOnGenre)->object();
 
-        return Inertia::render('Media/MediaCollectionPage',
+        return Inertia::render('Media/MediaIndex',
             [
                 'pageTitle'       => $genre,
                 'mediaCollection' => $media,
